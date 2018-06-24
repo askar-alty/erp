@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div>
+    <h3>Список записей расходов</h3>
+</div>
+
+<div>
+    <table class="table table-sm">
+        <thead>
+        <tr>
+            <th scope="col">Контрагент</th>
+            <th scope="col">Статья расходов</th>
+            <th scope="col">Тип расхода</th>
+            <th scope="col">Продукты</th>
+            <th scope="col">Общая стоимость</th>
+            <th scope="col">Количество в упаковке</th>
+            <th scope="col">Масса в упаковке (кг)</th>
+            <th scope="col">Количество (шт)</th>
+            <th scope="col">Дата обновления</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for expense in expenses %}
+        <tr>
+            <td>{{ expense.contractor.name }}</td>
+            <td>{{ expense.item.name }}</td>
+            <td>{{ expense.frequency_type }}</td>
+            <td>
+                {% for product in expense.products %}
+                <ul>
+                    <li>{{ product.name }}</li>
+                </ul>
+                {% endfor %}
+            </td>
+            <td>{{ expense.products_total_price }}</td>
+            <td>{{ expense.products_number_in_pack }}</td>
+            <td>{{ expense.products_weight_in_pack }}</td>
+            <td>{{ expense.products_count_in_pack }}</td>
+            <td>{{ expense.updated }}</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

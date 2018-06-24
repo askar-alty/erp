@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div>
+    <h3>Список записей доходов</h3>
+</div>
+
+<div>
+    <table class="table table-sm">
+        <thead>
+        <tr>
+            <th scope="col">Дата</th>
+            <th scope="col">Статья расходов</th>
+            <th scope="col">Контрагент</th>
+            <th scope="col">Продукт</th>
+            <th scope="col">Количество протуктов</th>
+            <th scope="col">Стоимость за единицу</th>
+            <th scope="col">Общая стоимость</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for income in incomes %}
+        <tr>
+            <td>{{ income.date }}</td>
+            <td>{{ income.contractor.name }}</td>
+            <td>{{ income.item.name }}</td>
+            <td>{{ income.product }}</td>
+            <td>{{ income.product_number }}</td>
+            <td>{{ income.product_price }}</td>
+            <td>{{ income.total_sum }}</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
